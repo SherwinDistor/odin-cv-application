@@ -10,25 +10,68 @@ function General() {
 	return (
 		<>
 			<label>Name:</label>
-			<input value={info.name} />
+			<input
+				value={info.name}
+				onChange={(event) => setInfo(event.target.value)}
+			/>
 		</>
 	);
 }
 
-function InfoCard() {
+function Education() {
+	const [edInfo, setEdInfo] = useState({
+		university: 'University of Nebraska Lincoln',
+		degree: 'Marketing and Management',
+	});
+
 	return (
-		<div className='infoCard'>
-			<General />
-		</div>
+		<>
+			<label>University:</label>
+			<input
+				value={edInfo.university}
+				onChange={(event) => setEdInfo(event.target.value)}
+			/>
+		</>
 	);
+}
+
+function Work() {
+	const [workInfo, setWorkInfo] = useState({
+		company: 'Voro',
+		position: 'Paid Media Analyst',
+	});
+
+	return (
+		<>
+			<label>Company:</label>
+			<input
+				value={workInfo.company}
+				onChange={(event) => setWorkInfo(event.target.value)}
+			/>
+		</>
+	);
+}
+
+function InfoCard({ type }) {
+	let cardType;
+
+	if (type === 'general') {
+		cardType = <General />;
+	} else if (type === 'education') {
+		cardType = <Education />;
+	} else if (type === 'work') {
+		cardType = <Work />;
+	}
+
+	return <div className='infoCard'>{cardType}</div>;
 }
 
 function Sidebar() {
 	return (
 		<div className='sidebar'>
-			<InfoCard />
-			<InfoCard />
-			<InfoCard />
+			<InfoCard type={'general'} />
+			<InfoCard type={'education'} />
+			<InfoCard type={'work'} />
 		</div>
 	);
 }
