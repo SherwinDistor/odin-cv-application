@@ -4,7 +4,7 @@ function Footer() {
 			<p>
 				&copy; {new Date().getFullYear()} |{' '}
 				<a href='/'>
-					<img src='public/github-mark.svg' alt='GitHub Logo' /> Sherwin Distor
+					<img src='/github-mark.svg' alt='GitHub Logo' /> Sherwin Distor
 				</a>
 			</p>
 		</footer>
