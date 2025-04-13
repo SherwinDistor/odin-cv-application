@@ -2,8 +2,13 @@
 	width: 50%;
 }
 
-.inputContainer {
+.formCard {
 	border: 1px solid hsl(0, 0%, 42%);
 	border-radius: 5px;
 	padding: 20px;
+	margin: 20px;
+}
+
+footer p a img {
+	height: 15px;
 }
