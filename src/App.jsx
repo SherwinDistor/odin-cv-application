@@ -1,7 +1,13 @@
-import Sidebar from './components/SideBar';
+import EducationParent from './components/EducationParent';
+// import Sidebar from './components/SideBar';
 
 function App() {
-	return <Sidebar />;
+	return (
+		<>
+			{/* <Sidebar /> */}
+			<EducationParent />
+		</>
+	);
 }
 
 export default App;
