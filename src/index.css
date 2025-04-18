@@ -1,14 +1,37 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#root {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+
 .sidebar {
+	border: 1px solid black;
 }
 
-.formCard {
-	width: 40%;
-	border: 1px solid hsl(0, 0%, 42%);
-	border-radius: 5px;
-	padding: 20px;
+.display {
+	border: 1px solid black;
+}
+
+.inputContainer {
+	border: 1px solid black;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 20px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.paper {
 	margin: 20px;
-}
-
-footer p a img {
-	height: 15px;
+	border: 1px solid black;
+	height: 500px;
+	padding: 10px 40px;
 }
