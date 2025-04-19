@@ -18,12 +18,16 @@ body {
 
 .inputContainer {
 	border: 1px solid black;
-	margin: 5px;
+	margin: 10px;
 	padding: 10px;
 	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 form {
+	border: 1px solid gray;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
@@ -34,4 +38,10 @@ form {
 	border: 1px solid black;
 	height: 500px;
 	padding: 10px 40px;
+}
+
+.lineSpace {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
 }

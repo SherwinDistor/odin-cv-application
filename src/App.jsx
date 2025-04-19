@@ -12,7 +12,16 @@ function App() {
 		university: 'University of Nebraska-Lincoln',
 		degree: 'Bachelors of Business Administration',
 	});
-	const [work, setWork] = useState();
+	const [work, setWork] = useState([
+		{
+			title: 'Paid Media Analyst',
+			company: 'Voro',
+			location: 'Minneapolis, MN',
+			startDate: 'June 2023',
+			endDate: 'May 2024',
+			description: ['went to work', 'took out the trash'],
+		},
+	]);
 	const [projects, setProjects] = useState();
 
 	function handleNameChange(e) {
@@ -97,6 +106,60 @@ function App() {
 						</label>
 						<button>Submit</button>
 					</form>
+					<form>
+						<label>
+							Title:{' '}
+							<input
+								type='text'
+								value={work[0].title}
+								onChange={(e) => handleNameChange(e)}
+							/>
+						</label>
+						<label>
+							Company:{' '}
+							<input
+								type='text'
+								value={work[0].company}
+								onChange={(e) => handleEmailChange(e)}
+							/>
+						</label>
+						<label>
+							Location:{' '}
+							<input
+								type='text'
+								value={work[0].location}
+								onChange={(e) => handleLocationChange(e)}
+							/>
+						</label>
+						<label>
+							Start Date:{' '}
+							<input
+								type='text'
+								value={work[0].startDate}
+								onChange={(e) => handleNumberChange(e)}
+							/>
+						</label>
+						<label>
+							End Date:{' '}
+							<input
+								type='url'
+								value={work[0].endDate}
+								onChange={(e) => handleLinkChange(e)}
+							/>
+						</label>
+						<label>
+							Job Description:
+							<ul>
+								{work[0].description.map((duty, index) => (
+									<li key={index}>
+										<textarea value={duty}></textarea>
+									</li>
+								))}
+							</ul>
+							<button>Add Duty</button>
+						</label>
+						<button>Submit</button>
+					</form>
 				</div>
 			</div>
 			<div className='display'>
@@ -111,7 +174,18 @@ function App() {
 							<a href=''>{profile.linkedIn}</a>
 						</span>
 					</div>
+					<h3>Experience</h3>
 					<hr />
+					<div className='lineSpace'>
+						<h4>{work[0].title}</h4>
+						<span>{work[0].location}</span>
+					</div>
+					<div className='lineSpace'>
+						<span>{work[0].company}</span>
+						<span>
+							{work[0].startDate} - {work[0].endDate}
+						</span>
+					</div>
 				</div>
 			</div>
 		</>
