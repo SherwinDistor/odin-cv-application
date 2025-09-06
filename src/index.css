@@ -1,47 +1,6 @@
+@import 'tailwindcss';
+
 body {
 	margin: 0;
 	padding: 0;
-}
-
-#root {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-}
-
-.sidebar {
-	border: 1px solid black;
-}
-
-.display {
-	border: 1px solid black;
-}
-
-.inputContainer {
-	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
-	border-radius: 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-}
-
-form {
-	border: 1px solid gray;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.paper {
-	margin: 20px;
-	border: 1px solid black;
-	height: 500px;
-	padding: 10px 40px;
-}
-
-.lineSpace {
-	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
 }
