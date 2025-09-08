@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import InputCard from './components/InputCard';
+import ExperienceTile from './components/ExperienceTile';
 
 function App() {
 	const [personalDetails, setPersonalDetails] = useState({
@@ -9,6 +10,10 @@ function App() {
 		location: 'Austin, TX',
 		link: 'linkedin.com/joeshmoe1',
 	});
+
+	const [experience, setExperience] = useState([{ name: 'Garmin' }]);
+
+	const [experienceIsExpanded, setExperienceIsExpanded] = useState(false);
 
 	return (
 		<>
@@ -81,7 +86,34 @@ function App() {
 							value={personalDetails.link}
 						/>
 					</InputCard>
-					<InputCard>Hello</InputCard>
+					<InputCard>
+						<h1 className='text-xl font-bold mb-2'>Experience</h1>
+						{experience.length <= 0
+							? 'empty'
+							: experience.map((exp, index) => {
+									if (experienceIsExpanded) {
+										return (
+											// Work on changing state of an array of objects and how to pass that down
+											<ExperienceTile
+												key={index}
+												experience={experience}
+												setExperience={setExperience}
+											/>
+										);
+									} else {
+										return (
+											<h2
+												key={index}
+												onClick={() =>
+													setExperienceIsExpanded(!experienceIsExpanded)
+												}
+											>
+												{exp.name}
+											</h2>
+										);
+									}
+							  })}
+					</InputCard>
 				</div>
 				<div className='w-full'>
 					<div className='bg-zinc-100 w-[210mm] h-[297mm]'>
