@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import InputCard from './components/InputCard';
 import ExperienceTile from './components/ExperienceTile';
+import InputField from './components/InputField';
 
 function App() {
 	const [personalDetails, setPersonalDetails] = useState({
@@ -11,9 +12,32 @@ function App() {
 		link: 'linkedin.com/joeshmoe1',
 	});
 
-	const [experience, setExperience] = useState([{ name: 'Garmin' }]);
+	const [experience, setExperience] = useState([
+		{
+			id: 0,
+			name: 'Garmin',
+			position: '',
+			startDate: '',
+			endDate: '',
+			location: '',
+			description: '',
+		},
+		{
+			id: 1,
+			name: 'Target',
+			position: '',
+			startDate: '',
+			endDate: '',
+			location: '',
+			description: '',
+		},
+	]);
 
-	const [experienceIsExpanded, setExperienceIsExpanded] = useState(false);
+	const [activeIndex, setActiveIndex] = useState(0);
+
+	function handleChange(e) {
+		setPersonalDetails({ ...personalDetails, [e.target.name]: e.target.value });
+	}
 
 	return (
 		<>
@@ -21,69 +45,40 @@ function App() {
 				<div>
 					<InputCard>
 						<h1 className='text-xl font-bold mb-2'>Personal Details</h1>
-						<h2 className='text-md font-medium'>Full Name</h2>
-						<input
-							className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
-							type='text'
-							name='name'
-							id='name'
-							onChange={(e) =>
-								setPersonalDetails({ ...personalDetails, name: e.target.value })
-							}
+
+						<InputField
+							label='Full Name'
+							field='name'
 							value={personalDetails.name}
+							handleChange={handleChange}
 						/>
-						<h2 className='text-md font-medium'>Email</h2>
-						<input
-							className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
-							type='text'
-							name=''
-							id=''
-							onChange={(e) =>
-								setPersonalDetails({
-									...personalDetails,
-									email: e.target.value,
-								})
-							}
+
+						<InputField
+							label='Email'
+							field='email'
 							value={personalDetails.email}
+							handleChange={handleChange}
 						/>
-						<h2 className='text-md font-medium'>Phone Number</h2>
-						<input
-							className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
-							type='text'
-							name=''
-							id=''
-							onChange={(e) =>
-								setPersonalDetails({
-									...personalDetails,
-									number: e.target.value,
-								})
-							}
+
+						<InputField
+							label='Phone Number'
+							field='number'
 							value={personalDetails.number}
+							handleChange={handleChange}
 						/>
-						<h2 className='text-md font-medium'>Location</h2>
-						<input
-							className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
-							type='text'
-							name=''
-							id=''
-							onChange={(e) =>
-								setPersonalDetails({
-									...personalDetails,
-									location: e.target.value,
-								})
-							}
+
+						<InputField
+							label='Location'
+							field='location'
 							value={personalDetails.location}
+							handleChange={handleChange}
 						/>
-						<h2 className='text-md font-medium'>LinkedIn</h2>
-						<input
-							className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
-							type='text'
-							name=''
-							id=''
-							onChange={(e) =>
-								setPersonalDetails({ ...personalDetails, link: e.target.value })
-							}
+
+						<InputField
+							label='LinkedIn'
+							field='link'
 							value={personalDetails.link}
+							handleChange={handleChange}
 						/>
 					</InputCard>
 					<InputCard>
@@ -91,27 +86,14 @@ function App() {
 						{experience.length <= 0
 							? 'empty'
 							: experience.map((exp, index) => {
-									if (experienceIsExpanded) {
-										return (
-											// Work on changing state of an array of objects and how to pass that down
-											<ExperienceTile
-												key={index}
-												experience={experience}
-												setExperience={setExperience}
-											/>
-										);
-									} else {
-										return (
-											<h2
-												key={index}
-												onClick={() =>
-													setExperienceIsExpanded(!experienceIsExpanded)
-												}
-											>
-												{exp.name}
-											</h2>
-										);
-									}
+									return (
+										<ExperienceTile
+											key={index}
+											exp={exp}
+											isActive={activeIndex === index}
+											onExpand={() => setActiveIndex(index)}
+										/>
+									);
 							  })}
 					</InputCard>
 				</div>

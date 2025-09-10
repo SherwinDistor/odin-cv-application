@@ -1,9 +1,20 @@
-function ExperienceTile(props) {
-	const { experience, setExperience } = props;
+import InputField from './InputField';
 
+function ExperienceTile({ exp, isActive, onExpand }) {
 	return (
 		<>
-			<h2 className='text-md font-medium'>Company Name</h2>
+			{isActive ? (
+				<InputField
+					label='Company Name'
+					field='name'
+					value={exp.name}
+					handleChange={console.log('hi')}
+				/>
+			) : (
+				<h3 onClick={onExpand}>{exp.name}</h3>
+			)}
+
+			{/* <h2 className='text-md font-medium'>Company Name</h2>
 			<input
 				className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
 				type='text'
@@ -61,7 +72,7 @@ function ExperienceTile(props) {
 				id='name'
 				onChange={(e) => console.log(e)}
 				value={''}
-			/>
+			/> */}
 		</>
 	);
 }
