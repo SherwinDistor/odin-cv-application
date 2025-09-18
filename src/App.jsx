@@ -16,11 +16,12 @@ function App() {
 		{
 			id: 0,
 			name: 'Garmin',
-			position: '',
-			startDate: '',
-			endDate: '',
-			location: '',
-			description: '',
+			position: 'Software Developer',
+			startDate: 'January 2023',
+			endDate: 'March 2025',
+			location: 'Kansas City, KS',
+			description:
+				'Collaborated with key stakeholders to reinvent the scholarship application process to generate over 30 candidates furthering a workforce development initiative • Implemented Google Analytics to track key performance metrics and inform strategic planning, resulting in an increase in website traffic',
 		},
 		{
 			id: 1,
@@ -98,14 +99,41 @@ function App() {
 					</InputCard>
 				</div>
 				<div className='w-full'>
-					<div className='bg-zinc-100 w-[210mm] h-[297mm]'>
-						<div>
-							<h1>{personalDetails.name}</h1>
+					<div className='bg-zinc-100 w-[210mm] h-[297mm] p-12'>
+						<div className='mb-6'>
+							<h1 className='text-2xl'>{personalDetails.name}</h1>
 							<p>
 								{personalDetails.location} | {personalDetails.number} |{' '}
 								{personalDetails.email}
 							</p>
-							<a href=''>{personalDetails.link}</a>
+							<a
+								href={personalDetails.link}
+								target='_blank'
+								className='text-blue-600 visited:text-purple-600 underline'
+							>
+								{personalDetails.link}
+							</a>
+						</div>
+						<div>
+							<h2>Work Experience</h2>
+							<hr />
+							{experience.map((exp) => {
+								return (
+									<div className='mb-4' key={exp.id}>
+										<div className='flex justify-between'>
+											<h3>{exp.name}</h3>
+											<p>{exp.location}</p>
+										</div>
+										<div className='flex justify-between'>
+											<h3>{exp.position}</h3>
+											<p>
+												{exp.startDate} - {exp.endDate}
+											</p>
+										</div>
+										<p>{exp.description}</p>
+									</div>
+								);
+							})}
 						</div>
 					</div>
 				</div>
