@@ -15,28 +15,34 @@ function ExperienceTile({ exp, isActive, onExpand, handleChange }) {
 						label='Position Title'
 						field='position'
 						value={exp.position}
-						handleChange={console.log('hi')}
+						handleChange={handleChange}
 					/>
 					<InputField
 						label='Location'
 						field='location'
 						value={exp.location}
-						handleChange={console.log('hi')}
+						handleChange={handleChange}
 					/>
 					<InputField
 						label='Start date'
 						field='startDate'
 						value={exp.startDate}
-						handleChange={console.log('hi')}
+						handleChange={handleChange}
 					/>
 					<InputField
 						label='End date'
 						field='endDate'
 						value={exp.endDate}
-						handleChange={console.log('hi')}
+						handleChange={handleChange}
 					/>
 					<h2 className='text-md font-medium'>Description</h2>
-					<textarea className='bg-zinc-200 p-1 rounded-lg w-full mb-2'>
+					<textarea
+						name='description'
+						id='description'
+						className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
+						rows='5'
+						onChange={handleChange}
+					>
 						{exp.description}
 					</textarea>
 

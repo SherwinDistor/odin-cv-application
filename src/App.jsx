@@ -21,7 +21,7 @@ function App() {
 			endDate: 'March 2025',
 			location: 'Kansas City, KS',
 			description:
-				'Collaborated with key stakeholders to reinvent the scholarship application process to generate over 30 candidates furthering a workforce development initiative • Implemented Google Analytics to track key performance metrics and inform strategic planning, resulting in an increase in website traffic',
+				'Collaborated with key stakeholders to reinvent the scholarship application process to generate over 30 candidates furthering a workforce development initiative Implemented Google Analytics to track key performance metrics and inform strategic planning, resulting in an increase in website traffic',
 		},
 		{
 			id: 1,
@@ -41,16 +41,16 @@ function App() {
 	}
 
 	function handleExperienceChange(e) {
-		experience.map((exp, index) => {
+		const newExperience = experience.map((exp) => {
 			if (activeIndex == exp.id) {
 				const newField = { ...exp, [e.target.name]: e.target.value };
-				const newExperience = experience;
-				newExperience[index] = newField;
-				console.log(newExperience);
-
-				setExperience([newExperience]);
+				return newField;
+			} else {
+				return exp;
 			}
 		});
+
+		setExperience(newExperience);
 	}
 
 	return (
@@ -144,7 +144,7 @@ function App() {
 												{exp.startDate} - {exp.endDate}
 											</p>
 										</div>
-										<p className='pl-3'>{exp.description}</p>
+										<p className='pl-3 description-text'>{exp.description}</p>
 									</div>
 								);
 							})}

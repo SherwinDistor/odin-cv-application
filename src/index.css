@@ -6,3 +6,7 @@ body {
 	letter-spacing: 1.3px;
 	font-family: Helvetica, Arial, sans-serif;
 }
+
+.description-text {
+	white-space: pre-line;
+}
