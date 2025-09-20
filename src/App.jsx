@@ -40,6 +40,19 @@ function App() {
 		setPersonalDetails({ ...personalDetails, [e.target.name]: e.target.value });
 	}
 
+	function handleExperienceChange(e) {
+		experience.map((exp, index) => {
+			if (activeIndex == exp.id) {
+				const newField = { ...exp, [e.target.name]: e.target.value };
+				const newExperience = experience;
+				newExperience[index] = newField;
+				console.log(newExperience);
+
+				setExperience([newExperience]);
+			}
+		});
+	}
+
 	return (
 		<>
 			<div className='bg-zinc-200 p-4 h-full flex gap-4'>
@@ -91,6 +104,7 @@ function App() {
 										<ExperienceTile
 											key={index}
 											exp={exp}
+											handleChange={handleExperienceChange}
 											isActive={activeIndex === index}
 											onExpand={() => setActiveIndex(index)}
 										/>
@@ -115,22 +129,22 @@ function App() {
 							</a>
 						</div>
 						<div>
-							<h2>Work Experience</h2>
+							<h2 className='font-semibold'>Work Experience</h2>
 							<hr />
 							{experience.map((exp) => {
 								return (
 									<div className='mb-4' key={exp.id}>
 										<div className='flex justify-between'>
-											<h3>{exp.name}</h3>
+											<h3 className='font-semibold'>{exp.name}</h3>
 											<p>{exp.location}</p>
 										</div>
 										<div className='flex justify-between'>
-											<h3>{exp.position}</h3>
+											<h3 className='italic'>{exp.position}</h3>
 											<p>
 												{exp.startDate} - {exp.endDate}
 											</p>
 										</div>
-										<p>{exp.description}</p>
+										<p className='pl-3'>{exp.description}</p>
 									</div>
 								);
 							})}

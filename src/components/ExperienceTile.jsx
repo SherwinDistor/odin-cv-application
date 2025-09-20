@@ -1,6 +1,6 @@
 import InputField from './InputField';
 
-function ExperienceTile({ exp, isActive, onExpand }) {
+function ExperienceTile({ exp, isActive, onExpand, handleChange }) {
 	return (
 		<>
 			{isActive ? (
@@ -9,7 +9,7 @@ function ExperienceTile({ exp, isActive, onExpand }) {
 						label='Company Name'
 						field='name'
 						value={exp.name}
-						handleChange={console.log('hi')}
+						handleChange={handleChange}
 					/>
 					<InputField
 						label='Position Title'
@@ -35,12 +35,11 @@ function ExperienceTile({ exp, isActive, onExpand }) {
 						value={exp.endDate}
 						handleChange={console.log('hi')}
 					/>
-					<InputField
-						label='Description'
-						field='description'
-						value={exp.description}
-						handleChange={console.log('hi')}
-					/>
+					<h2 className='text-md font-medium'>Description</h2>
+					<textarea className='bg-zinc-200 p-1 rounded-lg w-full mb-2'>
+						{exp.description}
+					</textarea>
+
 					<button>Save</button>
 					<hr />
 				</>
