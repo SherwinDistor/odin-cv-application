@@ -1,4 +1,4 @@
-function InputField({ label, field, value, handleChange }) {
+function InputField({ label, field, value, handleChange, setType }) {
 	return (
 		<>
 			<h2 className='text-md font-medium'>{label}</h2>
@@ -7,6 +7,7 @@ function InputField({ label, field, value, handleChange }) {
 				type='text'
 				name={field}
 				id={field}
+				data-set-type={setType}
 				onChange={handleChange}
 				value={value}
 			/>

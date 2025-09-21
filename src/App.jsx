@@ -34,10 +34,26 @@ function App() {
 		},
 	]);
 
+	const [education, setEducation] = useState({
+		name: 'University of Nebraska-Lincoln',
+		degree: 'Bachelor of Science in Business Administration',
+		location: 'Lincoln, NE',
+		major: 'Major: Marketing | Minor: Management | Emphasis: Advertising',
+	});
+
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	function handleChange(e) {
-		setPersonalDetails({ ...personalDetails, [e.target.name]: e.target.value });
+		console.log(e.target);
+
+		if (e.target.dataset.setType == 'personal') {
+			setPersonalDetails({
+				...personalDetails,
+				[e.target.name]: e.target.value,
+			});
+		} else {
+			setEducation({ ...education, [e.target.name]: e.target.value });
+		}
 	}
 
 	function handleExperienceChange(e) {
@@ -63,6 +79,7 @@ function App() {
 						<InputField
 							label='Full Name'
 							field='name'
+							setType='personal'
 							value={personalDetails.name}
 							handleChange={handleChange}
 						/>
@@ -70,6 +87,7 @@ function App() {
 						<InputField
 							label='Email'
 							field='email'
+							setType='personal'
 							value={personalDetails.email}
 							handleChange={handleChange}
 						/>
@@ -77,6 +95,7 @@ function App() {
 						<InputField
 							label='Phone Number'
 							field='number'
+							setType='personal'
 							value={personalDetails.number}
 							handleChange={handleChange}
 						/>
@@ -91,6 +110,7 @@ function App() {
 						<InputField
 							label='LinkedIn'
 							field='link'
+							setType='personal'
 							value={personalDetails.link}
 							handleChange={handleChange}
 						/>
@@ -110,6 +130,41 @@ function App() {
 										/>
 									);
 							  })}
+					</InputCard>
+					<InputCard>
+						<h1 className='text-xl font-bold mb-2'>Education</h1>
+
+						<InputField
+							label='University'
+							field='name'
+							setType='education'
+							value={education.name}
+							handleChange={handleChange}
+						/>
+
+						<InputField
+							label='Location'
+							field='location'
+							setType='education'
+							value={education.location}
+							handleChange={handleChange}
+						/>
+
+						<InputField
+							label='Degree'
+							field='degree'
+							setType='education'
+							value={education.degree}
+							handleChange={handleChange}
+						/>
+
+						<InputField
+							label='Major'
+							field='major'
+							setType='education'
+							value={education.major}
+							handleChange={handleChange}
+						/>
 					</InputCard>
 				</div>
 				<div className='w-full'>
@@ -148,6 +203,16 @@ function App() {
 									</div>
 								);
 							})}
+						</div>
+						<div>
+							<h2 className='font-semibold'>Education</h2>
+							<hr />
+							<div className='flex justify-between'>
+								<h3 className='font-semibold'>{education.name}</h3>
+								<p>{education.location}</p>
+							</div>
+							<p>{education.degree}</p>
+							<p>{education.major}</p>
 						</div>
 					</div>
 				</div>
