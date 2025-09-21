@@ -3,6 +3,8 @@ import InputCard from './components/InputCard';
 import ExperienceTile from './components/ExperienceTile';
 import InputField from './components/InputField';
 
+let experienceId = 2;
+
 function App() {
 	const [personalDetails, setPersonalDetails] = useState({
 		name: 'Joe Shmo',
@@ -69,6 +71,26 @@ function App() {
 		setExperience(newExperience);
 	}
 
+	function addExperience() {
+		setExperience([
+			...experience,
+			{
+				id: experienceId++,
+				name: '',
+				position: '',
+				startDate: '',
+				endDate: '',
+				location: '',
+				description: '',
+			},
+		]);
+	}
+
+	function deleteExperience(e) {
+		console.log(e);
+		setExperience(experience.filter((exp) => exp.id != e.target.id));
+	}
+
 	return (
 		<>
 			<div className='bg-zinc-200 p-4 h-full flex gap-4'>
@@ -127,9 +149,19 @@ function App() {
 											handleChange={handleExperienceChange}
 											isActive={activeIndex === index}
 											onExpand={() => setActiveIndex(index)}
+											onDelete={deleteExperience}
 										/>
 									);
 							  })}
+						<hr className='mb-4 mt-4' />
+						<div className='flex justify-center'>
+							<button
+								className='bg-green-200 rounded-lg p-2 hover:bg-green-100'
+								onClick={addExperience}
+							>
+								Add Experience
+							</button>
+						</div>
 					</InputCard>
 					<InputCard>
 						<h1 className='text-xl font-bold mb-2'>Education</h1>

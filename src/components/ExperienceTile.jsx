@@ -1,6 +1,6 @@
 import InputField from './InputField';
 
-function ExperienceTile({ exp, isActive, onExpand, handleChange }) {
+function ExperienceTile({ exp, isActive, onExpand, handleChange, onDelete }) {
 	return (
 		<>
 			{isActive ? (
@@ -42,16 +42,25 @@ function ExperienceTile({ exp, isActive, onExpand, handleChange }) {
 						className='bg-zinc-200 p-1 rounded-lg w-full mb-2'
 						rows='5'
 						onChange={handleChange}
-					>
-						{exp.description}
-					</textarea>
+						value={exp.description}
+					></textarea>
 
-					<button>Save</button>
-					<hr />
+					<button
+						className='bg-red-200 rounded-lg p-2 hover:bg-red-100'
+						onClick={onDelete}
+						id={exp.id}
+					>
+						Delete
+					</button>
 				</>
 			) : (
 				<>
-					<h3 onClick={onExpand}>{exp.name}</h3>
+					<h3
+						className='bg-blue-200 rounded-lg p-2 mb-2 mt-2'
+						onClick={onExpand}
+					>
+						{exp.name}
+					</h3>
 				</>
 			)}
 		</>
