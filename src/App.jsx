@@ -3,8 +3,6 @@ import InputCard from './components/InputCard';
 import ExperienceTile from './components/ExperienceTile';
 import InputField from './components/InputField';
 
-// let experienceId = 2;
-
 function App() {
 	const [personalDetails, setPersonalDetails] = useState({
 		name: 'Joe Shmo',
