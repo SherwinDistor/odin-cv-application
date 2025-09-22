@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import InputCard from './components/InputCard';
 import ExperienceTile from './components/ExperienceTile';
 import InputField from './components/InputField';
 
-let experienceId = 2;
+// let experienceId = 2;
 
 function App() {
 	const [personalDetails, setPersonalDetails] = useState({
@@ -14,40 +14,40 @@ function App() {
 		link: 'linkedin.com/joeshmoe1',
 	});
 
+	const experienceId = useRef(2);
 	const [experience, setExperience] = useState([
 		{
 			id: 0,
-			name: 'Garmin',
+			name: 'Amazon',
 			position: 'Software Developer',
 			startDate: 'January 2023',
-			endDate: 'March 2025',
-			location: 'Kansas City, KS',
+			endDate: 'Current',
+			location: 'Seattle, WA',
 			description:
-				'Collaborated with key stakeholders to reinvent the scholarship application process to generate over 30 candidates furthering a workforce development initiative Implemented Google Analytics to track key performance metrics and inform strategic planning, resulting in an increase in website traffic',
+				'- Engineered and launched a new data processing pipeline that reduced latency by 30% and improved data accuracy by 15%, handling over 1 million records daily\n- Collaborated with a cross-functional team to develop and deploy a microservices-based architecture, which increased system scalability and reduced maintenance costs by 20%',
 		},
 		{
 			id: 1,
 			name: 'Target',
-			position: '',
-			startDate: '',
-			endDate: '',
-			location: '',
-			description: '',
+			position: 'Sales Representative',
+			startDate: 'March 2018',
+			endDate: 'July 2022',
+			location: 'Chicago, IL',
+			description:
+				'- Surpassed sales quotas by 150% in Q3 2024 by developing and executing a new lead generation strategy that targeted high-value clients\n- Grew the regional customer base by 25% within one year through targeted outreach and building strong, long-term relationships with key accounts',
 		},
 	]);
 
 	const [education, setEducation] = useState({
-		name: 'University of Nebraska-Lincoln',
+		name: 'University of Southern California',
 		degree: 'Bachelor of Science in Business Administration',
-		location: 'Lincoln, NE',
-		major: 'Major: Marketing | Minor: Management | Emphasis: Advertising',
+		location: 'Los Angeles, CA',
+		major: 'Major: Marketing | Minor: Management',
 	});
 
 	const [activeIndex, setActiveIndex] = useState(0);
 
 	function handleChange(e) {
-		console.log(e.target);
-
 		if (e.target.dataset.setType == 'personal') {
 			setPersonalDetails({
 				...personalDetails,
@@ -75,8 +75,8 @@ function App() {
 		setExperience([
 			...experience,
 			{
-				id: experienceId++,
-				name: '',
+				id: experienceId.current++,
+				name: 'Company Name',
 				position: '',
 				startDate: '',
 				endDate: '',
@@ -87,14 +87,14 @@ function App() {
 	}
 
 	function deleteExperience(e) {
-		console.log(e);
+		console.log(`Experience with id ${e.target.id} was deleted`);
 		setExperience(experience.filter((exp) => exp.id != e.target.id));
 	}
 
 	return (
 		<>
 			<div className='bg-zinc-200 p-4 h-full flex gap-4'>
-				<div>
+				<div className='w-full'>
 					<InputCard>
 						<h1 className='text-xl font-bold mb-2'>Personal Details</h1>
 
@@ -125,6 +125,7 @@ function App() {
 						<InputField
 							label='Location'
 							field='location'
+							setType='personal'
 							value={personalDetails.location}
 							handleChange={handleChange}
 						/>
@@ -140,7 +141,7 @@ function App() {
 					<InputCard>
 						<h1 className='text-xl font-bold mb-2'>Experience</h1>
 						{experience.length <= 0
-							? 'empty'
+							? ''
 							: experience.map((exp, index) => {
 									return (
 										<ExperienceTile
@@ -208,7 +209,7 @@ function App() {
 								{personalDetails.email}
 							</p>
 							<a
-								href={personalDetails.link}
+								href={`https://www.${personalDetails.link}`}
 								target='_blank'
 								className='text-blue-600 visited:text-purple-600 underline'
 							>
